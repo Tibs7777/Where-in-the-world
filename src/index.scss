@@ -3,14 +3,14 @@
 :root {
   --color-bg: hsl(0, 0%, 98%);
   --color-text: hsl(200, 15%, 8%);
-  --color-input: hsl(0, 0%, 52%);
+  --color-input: hsla(0, 0%, 52%, 50%);
   --color-element: hsl(0, 0%, 100%);
 }
 
 .body--dark{
   --color-bg: hsl(207, 26%, 17%);
   --color-text: hsl(0, 0%, 100%);
-  --color-input: hsl(0, 0%, 100%);
+  --color-input: hsla(0, 0%, 100%, 50%);
   --color-element: hsl(209, 23%, 22%);
 }
 

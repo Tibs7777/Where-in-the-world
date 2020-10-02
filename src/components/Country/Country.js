@@ -45,7 +45,7 @@ const Country = props => {
             if (window.innerWidth >= 1440) {
                 leftOffset = 75
             }
-            if(country.current.offsetTop - window.scrollY - 88 > 0) {
+            if(country.current.offsetTop - window.scrollY - 88 >= 0) {
                 country.current.style.transform = `translate(-${country.current.offsetLeft - leftOffset}px, -${country.current.offsetTop - window.scrollY - 86}px)`
             } else {
                 country.current.style.transform = `translate(-${country.current.offsetLeft - leftOffset}px, ${window.scrollY - country.current.offsetTop + 86}px)`

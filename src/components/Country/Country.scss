@@ -237,7 +237,7 @@
             &__stats {
                 display: grid;
                 column-gap: 4rem;
-                grid-template-columns: repeat(auto-fit, minmax(25rem, max-content));          
+                grid-template-columns: repeat(auto-fit, minmax(20rem, max-content));          
             }
 
             &__info--full {

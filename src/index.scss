@@ -1,0 +1,47 @@
+
+
+:root {
+  --color-bg: hsl(0, 0%, 98%);
+  --color-text: hsl(200, 15%, 8%);
+  --color-input: hsl(0, 0%, 52%);
+  --color-element: hsl(0, 0%, 100%);
+}
+
+.body--dark{
+  --color-bg: hsl(207, 26%, 17%);
+  --color-text: hsl(0, 0%, 100%);
+  --color-input: hsl(0, 0%, 100%);
+  --color-element: hsl(209, 23%, 22%);
+}
+
+.body--noscroll {
+  overflow: hidden;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  box-sizing: inherit;
+  border: none;
+  backface-visibility: hidden;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  box-sizing: border-box;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1.6rem;
+}
+
+
+

@@ -1,0 +1,264 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+
+.Country {
+    width: 100%;
+    background-color: var(--color-element);
+    border-radius: 1rem;
+    box-shadow: .3rem .3rem 1rem 0 rgba(0,0,0,.15);
+    cursor: pointer;
+    height: 45rem;
+    transform: translate(0, 0);
+
+
+
+    &__flag {
+        width: 35rem;
+        // height: 50%;
+        // max-height: 23.3rem;
+        height: 22.5rem;
+        border-radius: 1rem 1rem 0 0;
+        box-shadow: 0 .3rem .5rem 0 rgba(0,0,0,.15);
+
+        @include mwbreakpoint(410px) {
+            width: 30rem;
+            height: auto;
+        }
+        @include mwbreakpoint(350px) {
+            width: 25rem;
+        }
+    }
+
+
+    &__text {
+        padding: 2rem;
+        transform: translate(0, 0);
+    }
+
+    &__name {
+        font-size: 2.4rem;
+        margin-bottom: 1.4rem;
+        font-weight: 800;
+    }
+
+    &__details {
+        font-size: 1.9rem;
+        margin-bottom: 4rem;
+    }
+
+    &__info-title {
+        font-weight: 600;
+
+    }
+
+    &__info {
+
+        &:not(:last-child) {
+            margin-bottom: .5rem;
+        }
+    }
+
+    &__info--full {
+        display: none;
+    }
+
+
+
+    &__boxes {
+        display: none;
+        flex-wrap: wrap;
+    }
+
+    &__box {
+        margin-right: 1rem;
+        margin-bottom: .8rem;
+        background: var(--color-element);
+        box-shadow: 0 .1rem .5rem 0 rgba(0,0,0,.15);
+        width: 12rem;
+        padding: .4rem 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--color-text);
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__back {
+        display: none;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        // margin-bottom: 1rem;
+        & > * {
+            margin-right: 1rem;
+        }
+        position: absolute;
+        top: 3.2rem;
+        left: 3.2rem;
+        color: var(--color-text);
+
+        svg path {
+            fill: var(--color-text);;
+        }
+
+        @include breakpoint($bp-tablet) {
+            left: 9.7rem;
+        }
+
+        @include breakpoint($bp-desktop) {
+            left: 16.5rem;
+        }
+
+
+
+    }
+
+    &--moving {
+        width: 100vw;
+        height: 100vh;
+        z-index: 6;
+        border-radius: 0;
+        transition: all .5s;
+        background-color: var(--color-bg);
+
+        .Country {
+
+            &__flag {
+                transform: translate(3.2rem, 12rem);
+                transition: transform .5s, width .5s, height .5s;
+                border-radius: 1rem;
+
+                @include mwbreakpoint(410px) {
+                    width: 30rem;
+                }
+                @include mwbreakpoint(350px) {
+                    width: 25rem;
+                }
+
+                @include breakpoint($bp-tablet) {
+                    width: 40rem;
+                    height: 26.6rem;
+                    max-height: none;
+                    transform: translate(9.7rem, 15rem);
+                }
+
+                @include breakpoint($bp-desktop) {
+                    width: 50rem;
+                    height: 33.3rem;
+                    transform: translate(16.5rem, 15rem);
+                }
+            }
+
+            &__text{
+                transition: all .5s;
+                transform: translate(3.2rem, 12rem);
+
+                @include breakpoint($bp-tablet) {
+                    padding: 0;
+                    transform: translate(55.7rem, -11.7rem);
+                }
+
+                @include breakpoint($bp-desktop) {
+                    transform: translate(72.5rem, -18.3rem);
+                }
+            }
+            &__stats {
+                display: grid;
+                column-gap: 4rem;
+                grid-template-columns: repeat(auto-fit, minmax(25rem, max-content));          
+            }
+        }
+    }
+
+
+
+
+
+
+    &--full {
+        z-index: 6;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 8.6rem;
+        left: 0;
+        border-radius: 0;
+        padding: 3.2rem;
+        cursor: initial;
+        overflow: auto;
+        background-color: var(--color-bg);
+
+
+        @include breakpoint($bp-tablet) {
+            padding: 15rem 9.7rem 15rem 9.7rem;
+            display: flex;
+            align-items: flex-start;
+            // justify-content: space-between;
+        }
+
+        @include breakpoint($bp-desktop) {
+            padding: 15rem 16.5rem 15rem 16.5rem;
+        }
+
+
+        & .Country {   
+
+            &__flag {
+                margin-top: 8.8rem;
+                margin-right: 6rem;
+                border-radius: 1rem;
+
+                @include breakpoint($bp-tablet) {
+                    margin-top: 0;
+                    width: 40rem;
+                    max-width: none;
+                    height: 26.6rem;
+                    max-height: none;
+                }
+
+                @include breakpoint($bp-desktop) {
+                    width: 50rem;
+                    height: 33.3rem;
+                }
+
+            }
+
+            &__text{
+                flex: 1 1 auto;
+                max-width: 70rem;
+
+                @include breakpoint($bp-tablet) {
+                    padding: 0;
+                }
+            }
+            &__stats {
+                display: grid;
+                column-gap: 4rem;
+                grid-template-columns: repeat(auto-fit, minmax(25rem, max-content));          
+            }
+
+            &__info--full {
+                display: block;
+            }
+
+            &__back {
+                display: block;
+            }
+
+            &__boxes {
+                display: flex;
+            }
+
+            &__back {
+                display: flex;
+            }
+            
+        }
+    }
+}
+
+
+

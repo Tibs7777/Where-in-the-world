@@ -1,0 +1,65 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.Header {
+    background: var(--color-element);
+    box-shadow: 0rem 0rem 1rem 0rem rgba(0,0,0,.15);
+    padding: 3rem 3rem;
+    position: fixed;
+    width: 100%;
+    top: -1px;
+    left: 0;
+    z-index: 222;
+
+    
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    @include breakpoint($bp-tablet) {
+        padding: 3rem 9.7rem;
+    }
+
+    @include breakpoint($bp-desktop) {
+        padding: 3rem 16.5rem;
+    }
+
+    &__title {
+        font-weight: 800;
+        font-size: 2rem;
+        margin-right: 3rem;
+        user-select: none;
+        @include mwbreakpoint(430px) {
+            font-size: 1.8rem;
+        }
+    }
+    
+    &__dark {
+        display: flex;
+        align-items: center;
+        flex: 0 0 auto;
+        cursor: pointer;
+        user-select: none;
+
+    }
+
+    &__dark-icon {
+        margin-right: 1.4rem;
+
+        path {
+            fill: var(--color-text)
+        }
+    }
+    
+    &__dark-text {
+        font-weight: 600;
+        font-size: 1.8rem;
+
+        @include mwbreakpoint(430px) {
+            display: none;
+        }        
+    }
+}

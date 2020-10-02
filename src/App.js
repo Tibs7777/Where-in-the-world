@@ -1,25 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import './App.scss';
+import Layout from './components/Layout/Layout'
+import Countries from './containers/Countries/Countries'
+import { BrowserRouter } from 'react-router-dom';
+
+
+
 
 function App() {
+
+  let [dark, setDark] = useState(false)
+
+  // let isDark = JSON.parse(localStorage.getItem("dark")) || false
+  // if(isDark) {
+  //   document.body.classList.add("body--dark")
+  // }
+
+  // setDark(JSON.parse(localStorage.getItem("dark")) || false)
+
+  useEffect(() => {
+    setDark(JSON.parse(localStorage.getItem("dark")) || false)
+  }, [])
+
+
+  useEffect(() => {
+    if(dark) {
+      document.body.classList.add("body--dark")
+      localStorage.setItem("dark", true)
+    } else {
+      document.body.classList.remove("body--dark")
+      localStorage.setItem("dark", false)
+    }
+  }, [dark])
+
+  
+
+  const toggleDark = () => {
+    setDark(prevState => !prevState)
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Layout dark={dark} toggleDark={toggleDark}>
+        <Countries />
+      </Layout>
+    </BrowserRouter>
   );
 }
 

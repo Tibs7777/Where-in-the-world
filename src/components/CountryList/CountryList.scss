@@ -1,0 +1,26 @@
+@import '../../scss/mixins';
+@import '../../scss/variables';
+
+.CountryList {
+    margin: 3.2rem 3.2rem 0 3.2rem;
+    display: grid;
+    gap: 2.4rem;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 35rem));
+
+    
+    @include mwbreakpoint(410px) {
+        grid-template-columns: repeat(auto-fit, minmax(min-content, 30rem));
+    }
+    @include mwbreakpoint(350px) {
+        grid-template-columns: repeat(auto-fit, minmax(min-content, 25rem));
+    }
+
+    @include breakpoint($bp-tablet) {
+        margin: 3.2rem 9.7rem 0 9.7rem;
+    }
+
+    @include breakpoint($bp-desktop) {
+        margin: 3.2rem 16.5rem 0 16.5rem;
+    }
+}

@@ -31,7 +31,7 @@ const Country = props => {
         setClicked(false)
         props.updateFull()
         // country.current.classList.remove("Country--full")
-        // document.body.classList.remove("body--noscroll")
+        document.body.classList.remove("body--noscroll")
     }
 
     const resetStyle = () => {

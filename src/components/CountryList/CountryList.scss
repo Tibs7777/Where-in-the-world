@@ -6,14 +6,14 @@
     display: grid;
     gap: 2.4rem;
     justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(min-content, 35rem));
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 33rem));
 
     
     @include mwbreakpoint(410px) {
         grid-template-columns: repeat(auto-fit, minmax(min-content, 30rem));
     }
     @include mwbreakpoint(350px) {
-        grid-template-columns: repeat(auto-fit, minmax(min-content, 25rem));
+        grid-template-columns: repeat(auto-fit, minmax(min-content, 24rem));
     }
 
     @include breakpoint($bp-tablet) {

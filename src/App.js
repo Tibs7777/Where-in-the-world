@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.scss';
 import Layout from './components/Layout/Layout'
 import Countries from './containers/Countries/Countries'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import Home from './containers/Home/Home';
 
 
 
@@ -10,13 +11,6 @@ import { BrowserRouter } from 'react-router-dom';
 function App() {
 
   let [dark, setDark] = useState(false)
-
-  // let isDark = JSON.parse(localStorage.getItem("dark")) || false
-  // if(isDark) {
-  //   document.body.classList.add("body--dark")
-  // }
-
-  // setDark(JSON.parse(localStorage.getItem("dark")) || false)
 
   useEffect(() => {
     setDark(JSON.parse(localStorage.getItem("dark")) || false)
@@ -43,7 +37,11 @@ function App() {
   return (
     <BrowserRouter>
       <Layout dark={dark} toggleDark={toggleDark}>
-        <Countries />
+        <Switch>
+          <Route path="/countries" component={Countries}/>
+          <Route path="/" exact component={Home}/>
+          <Redirect to='/'/>
+        </Switch>
       </Layout>
     </BrowserRouter>
   );

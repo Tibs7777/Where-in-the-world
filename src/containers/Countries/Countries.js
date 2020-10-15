@@ -4,12 +4,14 @@ import Input from '../../components/Input/Input'
 import { useHistory, useLocation, Route, Redirect } from 'react-router-dom'
 import Country from '../../components/Country/Country'
 import ScrollUpButton from '../../components/ScrollUpButton/ScrollUpButton'
+import { useDispatch, useSelector } from 'react-redux'
+import * as actionTypes from '../../store/actions'
 
 
 const Countries = props => {
 
     const [countries, setCountries] = useState(null)
-    const [falseCountries, setFalseCountries] = useState(null)
+    // const [falseCountries, setFalseCountries] = useState(null)
     const [filteredCountries, setFilteredCountries] = useState(null)
     const [showScrollButton, setShowScrollButton] = useState(false)
     const [filter, setFilter] = useState()
@@ -17,26 +19,25 @@ const Countries = props => {
     const location = useLocation()
     const [page, setPage] = useState(1)
     const [search, setSearch] = useState("")
+    const dispatch = useDispatch()
+    const falseCountries = useSelector(state => state.falseCountries)
 
 
     useEffect(() => {
-        if(!countries){
-        fetch('https://restcountries.eu/rest/v2/all')
+
+
+
+        if(!falseCountries){
+        fetch('https://restcountries.eu/rest/v2/all?fields=alpha3Code;borders;capital;currencies;flag;languages;latlng;name;nativeName;population;region;subregion;topLevelDomain')
+        // fetch('https://restcountries.eu/rest/v2/all')
         .then(res => res.json())
         .then(res => {
-            let fetchedCountries;
-            fetchedCountries = res.map(country => {
-                return {
-                    ...country,
-                    full: false
-                }
-            })
-                setFalseCountries(fetchedCountries)
-            if (location.pathname === "/"){
-                setCountries(fetchedCountries)
+        dispatch({type: actionTypes.INIT_COUNTRIES, falseCountries: res})
+            if (location.pathname === "/countries"){
+                setCountries(falseCountries)
             } else {
-                fetchedCountries = res.map(country => {
-                    if("/" + country.name === location.pathname) {
+                let fetchedCountries = res.map(country => {
+                    if("/countries/" + country.name === location.pathname) {
                         return {
                             ...country,
                             full: true
@@ -52,17 +53,34 @@ const Countries = props => {
                 setCountries(fetchedCountries)
             }
         })
+    } else if (!countries) {
+        if (location.pathname === "/countries"){
+            setCountries(falseCountries)
+        } else {
+            let newCountries = falseCountries.map(country => {
+                if("/countries/" + country.name === location.pathname) {
+                    return {
+                        ...country,
+                        full: true
+                    }
+                }
+                else {
+                    return {
+                        ...country,
+                        full: false
+                    }
+                }
+            })
+            setCountries(newCountries)
+        }
     }
-    }, [location.pathname, countries])
-
-
-
+    }, [location.pathname, countries, dispatch, falseCountries])
 
 
     const updateFull = useCallback(name => {
         let arr;
         if(name){
-            history.push("/" + name)
+            history.push("/countries/" + name)
         arr = countries.map(country => {
             if(country.name === name) {
                 return {
@@ -78,7 +96,7 @@ const Countries = props => {
         })
         setCountries(arr)
         } else {
-            history.push('/')
+            history.push('/countries')
                 arr = countries.map(country => {
                     return {
                         ...country,
@@ -89,21 +107,37 @@ const Countries = props => {
         }
     }, [countries, history])
 
+
+    //history handler
     useEffect(() => {
-        let fullCountry = document.querySelector('.Country--full')
-        let movingCountry = document.querySelector('.Country--moving')
-        if(location.pathname === "/" && countries && (fullCountry || movingCountry)){
-            setCountries(falseCountries)
-            if(fullCountry) {
-                fullCountry.classList.remove('Country--full')
-            } else if(movingCountry) {
-                movingCountry.classList.remove('Country--moving')
-                movingCountry.style.transform = null
+        const listener = history.listen((location, action) => {
+            // let fullCountry = document.querySelector('.Country--full')
+            // let movingCountry = document.querySelector('.Country--moving')
+            if(location.pathname === "/countries"){
+                setCountries(falseCountries)
+            } else if(falseCountries && action === "POP") {
+                let newCountries = falseCountries.map(country => {
+                    if("/countries/" + country.name === location.pathname) {
+                        return {
+                            ...country,
+                            full: true
+                        }
+                    }
+                    else {
+                        return {
+                            ...country,
+                            full: false
+                        }
+                    }
+                })
+                setCountries(newCountries)
             }
+        });
+        return(() => {
             document.body.classList.remove("body--noscroll")
-            updateFull()
-        }
-    }, [location.pathname, falseCountries, countries, updateFull])
+            listener()
+        })
+    }, [falseCountries, history])
 
     const changeFilter = useCallback((filter) => {
         setFilter(filter)
@@ -142,9 +176,9 @@ const Countries = props => {
     let pathnameCountryIndex = null
     let redirect = null;
 
-    if(location.pathname !== "/" && countries) {
+    if(location.pathname !== "/countries" && countries) {
         pathnameCountryIndex = countries.findIndex(country => {
-            return "/" + country.name === location.pathname
+            return "/countries/" + country.name === location.pathname
         })
         if(pathnameCountryIndex === -1) {
             redirect = true
@@ -152,15 +186,15 @@ const Countries = props => {
     }
 
     if(pathnameCountryIndex > (page * 10) - 1) {
-        console.log(pathnameCountryIndex)
-        route = <Route pathname="/Estonia" render={() => {
+        route = <Route pathname="/countries/:countryname" render={() => {
             return <Country country={countries[pathnameCountryIndex]} falseCountries={falseCountries} countries={countries} updateFull={updateFull} full/>
         }} />
     }
 
     return (
         <React.Fragment>
-            {redirect ? <Redirect to="/"/> : null}
+            {redirect ? <Redirect to="/countries"/> : null}
+            {route}
             <Input changeFilter={changeFilter} 
                    filter={filter} 
                    setPage={setPage} 
@@ -171,8 +205,7 @@ const Countries = props => {
                    falseCountries={falseCountries}
                    filteredCountries={filteredCountries}/>
             <CountryList countries={countries} updateFull={updateFull} falseCountries={falseCountries} page={page} setPage={setPage}/>
-            {showScrollButton ? <ScrollUpButton /> : null}
-            {route}
+            {showScrollButton ? <ScrollUpButton resetScroll={() => setPage(1)}/> : null}
         </React.Fragment>
     )
 }

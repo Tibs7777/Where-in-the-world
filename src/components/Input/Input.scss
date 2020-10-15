@@ -26,46 +26,6 @@
     }
 }
 
-.Search {
-    width: 100%;
-    display: block;
-    max-width: 50rem;
-    height: 5rem;
-    border-radius: .5rem;
-    position: relative;
-    margin-bottom: 1rem;
-    margin-right: 5rem;
-
-    &__input {
-        width: 100%;
-        border-radius: .5rem;
-        height: 100%;
-        color: var(--color-input);
-        padding-left: 25%;
-        box-shadow: .4rem .3rem 1rem 0 rgba(0,0,0,.15);
-        background: var(--color-element);
-
-        &::placeholder {
-            color: currentColor;
-        }
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    svg {
-        position: absolute;
-        top: 50%;
-        left: 10%;
-        transform: translateY(-50%) scale(.7);
-
-        path {
-            fill: var(--color-input);
-        }
-    }
-}
-
 
 
 .Filter {

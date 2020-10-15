@@ -8,32 +8,52 @@
     border-radius: 1rem;
     box-shadow: .3rem .3rem 1rem 0 rgba(0,0,0,.15);
     cursor: pointer;
-    height: 45rem;
+    // height: 45rem;
     transform: translate(0, 0);
+    padding: 2rem 2rem 0rem 2rem;
 
-
-
-    &__flag {
-        width: 35rem;
-        // height: 50%;
-        // max-height: 23.3rem;
-        height: 22.5rem;
-        border-radius: 1rem 1rem 0 0;
-        box-shadow: 0 .3rem .5rem 0 rgba(0,0,0,.15);
-
-        @include mwbreakpoint(410px) {
-            width: 30rem;
-            height: auto;
-        }
-        @include mwbreakpoint(350px) {
-            width: 25rem;
-        }
+    @include mwbreakpoint(410px) {
+        padding: 1rem 1rem 0rem 1rem;
     }
 
 
+    &__flag {
+        width: 100%;
+        max-height: 22.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 .3rem .5rem 0 rgba(0,0,0,.15);
+        // object-fit: cover;
+        // object-position: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__flag-container {
+        width: 31rem;
+        height: 22.5rem;
+        position: relative;
+        flex-shrink: 0;
+
+        @include mwbreakpoint(410px) {
+            width: 30rem;
+        }
+        @include mwbreakpoint(350px) {
+            width: 22rem;
+        }
+
+
+    }
+
     &__text {
-        padding: 2rem;
+        // padding: 2rem;
+        padding-top: 3rem;
         transform: translate(0, 0);
+
+        @include mwbreakpoint(410px) {
+            padding-top: 1rem;
+        }
     }
 
     &__name {
@@ -91,7 +111,6 @@
         cursor: pointer;
         align-items: center;
         justify-content: center;
-        // margin-bottom: 1rem;
         & > * {
             margin-right: 1rem;
         }
@@ -127,42 +146,55 @@
         .Country {
 
             &__flag {
-                transform: translate(3.2rem, 12rem);
-                transition: transform .5s, width .5s, height .5s;
                 border-radius: 1rem;
+                top: 0;
+                transform: translate(-50%, 0);
+                transition: all .5s;
+
+                @include breakpoint($bp-tablet) {
+                    max-height: 26.6rem;
+                }
+
+                @include breakpoint($bp-tablet) {
+                    max-height: 33.3rem;
+                }
+            }
+
+            &__flag-container {
+                transform: translate(2.2rem, 10rem);
+                transition: transform .5s, width .5s, height .5s;
 
                 @include mwbreakpoint(410px) {
                     width: 30rem;
                 }
                 @include mwbreakpoint(350px) {
-                    width: 25rem;
+                    width: 22rem;
                 }
 
                 @include breakpoint($bp-tablet) {
                     width: 40rem;
                     height: 26.6rem;
-                    max-height: none;
-                    transform: translate(9.7rem, 15rem);
+                    transform: translate(9.7rem, 13rem);
                 }
 
                 @include breakpoint($bp-desktop) {
                     width: 50rem;
                     height: 33.3rem;
-                    transform: translate(16.5rem, 15rem);
+                    transform: translate(16.5rem, 13rem);
                 }
             }
 
             &__text{
                 transition: all .5s;
-                transform: translate(3.2rem, 12rem);
+                transform: translate(2.2rem, 10rem);
 
                 @include breakpoint($bp-tablet) {
                     padding: 0;
-                    transform: translate(55.7rem, -11.7rem);
+                    transform: translate(55.7rem, -13.7rem);
                 }
 
                 @include breakpoint($bp-desktop) {
-                    transform: translate(72.5rem, -18.3rem);
+                    transform: translate(72.5rem, -20.3rem);
                 }
             }
             &__stats {
@@ -196,7 +228,6 @@
             padding: 15rem 9.7rem 15rem 9.7rem;
             display: flex;
             align-items: flex-start;
-            // justify-content: space-between;
         }
 
         @include breakpoint($bp-desktop) {
@@ -207,9 +238,26 @@
         & .Country {   
 
             &__flag {
+                top: 0;
+                transform: translate(-50%, 0);
+                border-radius: 1rem;
+
+                @include breakpoint($bp-tablet) {
+                    max-height: 26.6rem;
+                }
+
+                @include breakpoint($bp-tablet) {
+                    max-height: 33.3rem;
+                }
+                
+
+            }
+
+            &__flag-container {
                 margin-top: 8.8rem;
                 margin-right: 6rem;
-                border-radius: 1rem;
+                align-items: flex-start;
+                transition: none;
 
                 @include breakpoint($bp-tablet) {
                     margin-top: 0;
@@ -223,7 +271,6 @@
                     width: 50rem;
                     height: 33.3rem;
                 }
-
             }
 
             &__text{

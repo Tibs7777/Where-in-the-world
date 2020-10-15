@@ -1,4 +1,5 @@
-
+@import './scss/typography';
+@import './scss/utility';
 
 :root {
   --color-bg: hsl(0, 0%, 98%);
@@ -41,6 +42,8 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-size: 1.6rem;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 

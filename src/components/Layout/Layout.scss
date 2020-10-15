@@ -10,6 +10,7 @@
     top: 0;
     left: 0;
     z-index: 222;
+    height: 8.8rem;
 
     
     &__inner {
@@ -32,8 +33,14 @@
         font-size: 2rem;
         margin-right: 3rem;
         user-select: none;
+
         @include mwbreakpoint(430px) {
             font-size: 1.8rem;
+        }
+
+        a {
+            color: var(--color-text);
+            text-decoration: none;
         }
     }
     
@@ -48,6 +55,7 @@
 
     &__dark-icon {
         margin-right: 1.4rem;
+        height: 2.8rem;
 
         path {
             fill: var(--color-text)

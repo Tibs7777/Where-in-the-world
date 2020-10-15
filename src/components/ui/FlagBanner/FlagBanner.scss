@@ -1,0 +1,36 @@
+.Flags {
+    width: fit-content;
+    display: flex;
+    animation: slideRight 240s infinite cubic-bezier(1,1,1,1);
+    // background: #000;
+    cursor: pointer;
+    will-change: transform;
+
+    &:hover {
+        animation-play-state: paused;
+        
+        & > * :not(:hover){
+            filter: brightness(0.5);
+        }
+    }
+
+    &__repeat {
+        width: 100vw;
+        display: flex;
+        overflow: hidden;
+    }
+
+}
+
+
+
+@keyframes slideRight {
+    from {
+        transform: translateX(calc(-100% + 100vw));
+        // transform: translateX(-100vw)
+    }
+    
+    to {
+        transform: translateX(0)
+    }
+}

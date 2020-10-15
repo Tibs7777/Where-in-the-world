@@ -1,0 +1,24 @@
+.SearchResults {
+    position: absolute;
+    width: 100%;
+    max-width: 50rem;
+    background: var(--color-element);
+    top: 0;
+    text-align: left;
+    padding:  0rem 0rem 0rem 0rem;
+    transform: translateY(6rem);
+    border-radius: .5rem;
+    list-style: none;
+    padding: .2rem;
+    // visibility: hidden;
+}
+
+.SearchResult {
+    cursor: pointer;
+    padding: .5rem;
+    border-radius: .5rem;
+
+    &--selected {
+        background: var(--color-bg);
+    }
+}

@@ -56,6 +56,7 @@
     &__dark-icon {
         margin-right: 1.4rem;
         height: 2.8rem;
+        user-select: none;
 
         path {
             fill: var(--color-text)

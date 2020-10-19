@@ -3,10 +3,11 @@
 
 .Home {
     height: calc(100vh - 8.8rem);
-    min-height: 70rem;
+    margin-top: 8.8rem;
+    // min-height: 50rem;
     width: 100%;
-    position: absolute;
-    bottom: 0;
+    // position: absolute;
+    // bottom: 0;
     background: var(--color-background);
 
     &__content {
@@ -84,7 +85,4 @@
     z-index: 99;
 }
 
-.test {
-    width: 100vw;
-    overflow: hidden;
-}
+

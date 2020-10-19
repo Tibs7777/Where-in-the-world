@@ -1,11 +1,11 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useCallback} from 'react'
 import './Home.scss'
 import { Link, useHistory } from 'react-router-dom'
 import SearchBar from '../../components/ui/SearchBar/SearchBar'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actionTypes from '../../store/actions'
 import FlagBanner from '../../components/ui/FlagBanner/FlagBanner'
-import { checkMatches, shuffleArray} from '../../utils/Utils'
+import { checkMatches, debounce, shuffleArray} from '../../utils/Utils'
 
 
 export default function Home() {
@@ -40,29 +40,30 @@ export default function Home() {
     }
     }, [falseCountries, dispatch])
 
+    // const debouncedChange = useCallback(debounce(value => setSearchResults(value), 100), [])
+
     useEffect(() => {
         let arr;
         if(falseCountries && search && resultIndex <= -1) {
             arr = checkMatches(falseCountries, search, "population")
             if(arr.length) {
                 setSearchResults(arr)
+                // debouncedChange(arr)
             } else {
                 setSearchResults(null)
+                // debouncedChange(arr)
             }
         } else if (falseCountries && search && resultIndex > -1) {
             return
         }
         else if (falseCountries) {
             setSearchResults(arr)
+            // debouncedChange(arr)
         }
     }, [falseCountries, search, resultIndex])
 
 
-    const onChangeHandler = (e) => {
-        setSearch(e.target.value)
-        setResultIndex(-1)
-        setSavedSearch(null)
-    }
+
 
     const onSubmitHandler = (e, value) => {
         e.preventDefault()
@@ -76,6 +77,7 @@ export default function Home() {
             history.push('/countries')
         }
     }
+
 
 
 
@@ -129,15 +131,29 @@ export default function Home() {
         setResultIndex(-1)
     }
 
+
+
+    const onChangeHandler = useCallback((e) => {
+        setSearch(e.target.value)
+        setResultIndex(-1)
+        setSavedSearch(null)
+    }, [])
+
+
+
+
+
     //need to clean up doing rendering work in a container
     return (
         <div className="Home">
+            <div className="test">
                 <FlagBanner flags={flags}/>
+            </div>
             <div className="Home__content">
                 <h1 className="Home__title">Where in the World?</h1>
                 <div className="Home__search">
                     <SearchBar extraClasses="marg-bottom-medium" 
-                               onChangeHandler={onChangeHandler} 
+                               onChangeHandler={(e) => onChangeHandler(e)} 
                                value={search} 
                                onSubmitHandler={onSubmitHandler} 
                                keyDownHandler={keyDownHandler} 

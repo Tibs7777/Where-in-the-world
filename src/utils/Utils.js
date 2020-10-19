@@ -36,3 +36,15 @@ export function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+
+export function debounce(fn, delay) {
+    var timer = null;
+    return function() {
+      var context = this,
+        args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        fn.apply(context, args);
+      }, delay);
+    };
+  }

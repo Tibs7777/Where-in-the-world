@@ -1,6 +1,19 @@
 .Flag {
     height: 7.4rem;
     flex-shrink: 0;
-    // backface-visibility: hidden;
     display: block;
+    transform: translate(0);
+    // animation: slideRight 20s infinite cubic-bezier(1,1,1,1);
+    will-change: transform;
+
 }
+
+// @keyframes slideRight {
+//     from {
+//         transform: translateX(0);
+//     }
+    
+//     to {
+//         transform: translateX(100vw)
+//     }
+// }

@@ -2,11 +2,10 @@
     width: fit-content;
     display: flex;
     animation: slideRight 240s infinite cubic-bezier(1,1,1,1);
-    background: #000;
     cursor: pointer;
     will-change: transform;
-    box-shadow: .3rem .3rem 1rem 0 rgba(0,0,0,.15);
     height: 7.4rem;
+    transform: translateX(calc(-100% + 100vw));
     &:hover {
         animation-play-state: paused;
         
@@ -23,10 +22,12 @@
 
 }
 
-.FlagBanner-container {
+.Flags-container {
     width: 100vw;
     overflow: hidden;
     height: 7.4rem;
+    box-shadow: .3rem .3rem 1rem 0 rgba(0,0,0,.15);
+    background: #000;
 }
 
 
@@ -34,7 +35,6 @@
 @keyframes slideRight {
     from {
         transform: translateX(calc(-100% + 100vw));
-        // transform: translateX(-100vw)
     }
     
     to {

@@ -5,7 +5,7 @@ import './FlagBanner.scss'
 function FlagBanner(props) {
 
 
-    console.log("banner render")
+    // console.log("banner render")
 
 
 
@@ -16,7 +16,7 @@ function FlagBanner(props) {
         repeat = props.flags.slice(0, 20).map(flag => {
             return <Flag img={flag.flag} name={flag.name} key={flag.name} />
         })
-        flags = props.flags.slice(0, 125).map(flag => {
+        flags = props.flags.slice(0, 100).map(flag => {
             return <Flag img={flag.flag} name={flag.name} key={"repeat" + flag.name} />
         })
     }

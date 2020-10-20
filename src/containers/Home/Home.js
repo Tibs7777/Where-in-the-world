@@ -146,7 +146,7 @@ export default function Home() {
     //need to clean up doing rendering work in a container
     return (
         <div className="Home">
-            <div className="FlagBanner-container">
+            <div className="Flags-container">
                 <FlagBanner flags={flags}/>
             </div>
             <div className="Home__content">

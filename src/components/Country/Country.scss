@@ -161,11 +161,12 @@
             }
 
             &__flag-container {
-                transform: translate(2.2rem, 10rem);
+                transform: translate(1.2rem, 10rem);
                 transition: transform .5s, width .5s, height .5s;
 
                 @include mwbreakpoint(410px) {
                     width: 30rem;
+                    transform: translate(2.2rem, 11rem);
                 }
                 @include mwbreakpoint(350px) {
                     width: 22rem;
@@ -186,9 +187,25 @@
 
             &__text{
                 transition: all .5s;
-                transform: translate(2.2rem, 10rem);
+                transform: translate(1.2rem, 10rem);
+
+                @include mwbreakpoint(410px) {
+                    transform: translate(2.2rem, 11rem);
+                }
+
+                @include mwbreakpoint(350px) {
+                    // width: 22rem;
+                }
+
+
+                
 
                 @include breakpoint($bp-tablet) {
+                    padding: 0;
+                    transform: translate(9.7rem, 18rem);
+                }
+
+                @include breakpoint(1100px) {
                     padding: 0;
                     transform: translate(55.7rem, -13.7rem);
                 }
@@ -226,12 +243,19 @@
 
         @include breakpoint($bp-tablet) {
             padding: 15rem 9.7rem 15rem 9.7rem;
+
+        }
+
+        @include breakpoint(1100px) {
+            padding: 15rem 9.7rem 15rem 9.7rem;
             display: flex;
             align-items: flex-start;
+
         }
 
         @include breakpoint($bp-desktop) {
             padding: 15rem 16.5rem 15rem 16.5rem;
+
         }
 
 
@@ -278,6 +302,15 @@
                 max-width: 70rem;
 
                 @include breakpoint($bp-tablet) {
+                    padding-top: 5rem;
+                }
+
+                @include breakpoint(1100px) {
+                    padding: 0;
+        
+                }
+
+                @include breakpoint($bp-desktop) {
                     padding: 0;
                 }
             }

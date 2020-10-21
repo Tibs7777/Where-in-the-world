@@ -10,11 +10,15 @@ import Home from './containers/Home/Home';
 
 function App() {
 
-  let [dark, setDark] = useState(false)
+  let [dark, setDark] = useState(JSON.parse(localStorage.getItem("dark")) ?? false)
 
-  useEffect(() => {
-    setDark(JSON.parse(localStorage.getItem("dark")) || false)
-  }, [])
+  // useLayoutEffect(() => {
+  //   setDark(JSON.parse(localStorage.getItem("dark")) ?? false)
+  // }, [])
+
+
+
+
 
 
   useEffect(() => {

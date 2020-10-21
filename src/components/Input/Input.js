@@ -14,7 +14,7 @@ const Search = (props) => {
     const clear = useRef(null)
     let {filteredCountries, falseCountries, setPage, setCountries, search} = props
     
-    const toggleDropdown = () => {
+    const toggleDropdown = (e) => {
         setDropdownOpen(prevState => !prevState)
             if(!dropdownOpen){
                 filter.current.classList.add('Filter--open')
@@ -67,12 +67,31 @@ const Search = (props) => {
     }, [filteredCountries, falseCountries, setPage, setCountries, search])
 
 
+
+    // const closeDropdown = () => {
+    //     console.log(1)
+    //     // if(!dropdownOpen){
+    //         console.log('closing')
+    //         setDropdownOpen(false)
+    //         filter.current.classList.remove('Filter--open')
+    //         container.current.classList.add('"Filter__dropdown-container--noclick"')
+    //     // }
+    // }
+
+    // useEffect(() => {
+    //         document.body.addEventListener("click", closeDropdown)
+    //     return(() => {
+    //         document.body.removeEventListener("click", closeDropdown)
+    //     })
+    //   }, [])
+
+
     return(
         <div className="Input">
             <SearchBar extraClasses="marg-bottom-small marg-right-medium" onChangeHandler={inputChangeHandler} value={props.search}/>
             <div className="Filter" ref={filter}>
                 <div className="Filter__clear" onClick={removeFilter} ref={clear}></div>
-                <div className="Filter__body"  onClick={toggleDropdown}>
+                <div className="Filter__body"  onClick={(e) => toggleDropdown(e)}>
                     <h4 className="Filter__title">{props.filter ? props.filter : "Filter by region"}</h4>
                     <ChevronDown />
                 </div>

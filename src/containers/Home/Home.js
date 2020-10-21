@@ -5,7 +5,7 @@ import SearchBar from '../../components/ui/SearchBar/SearchBar'
 import { useDispatch, useSelector } from 'react-redux'
 import * as actionTypes from '../../store/actions'
 import FlagBanner from '../../components/ui/FlagBanner/FlagBanner'
-import { checkMatches, debounce, shuffleArray} from '../../utils/Utils'
+import { checkMatches, shuffleArray} from '../../utils/Utils'
 
 
 export default function Home() {
